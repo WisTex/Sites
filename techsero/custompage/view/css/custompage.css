@@ -17,3 +17,49 @@
     text-align:center;
 }
 */
+
+/*------------------------------------------------------------------
+	4. info Section Styles
+-------------------------------------------------------------------*/
+#info {
+    background-color: #ffffff;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+}
+
+#info .info-text {
+    padding-left: 15%;
+    padding-right: 15%;
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: 300;
+    color: #3f3d59;
+}
+
+#h-info {
+    background-color: #ffffff;
+    padding-top: 60px;
+    text-align: center;
+}
+
+#h-info .info-text {
+    padding-left: 15%;
+    padding-right: 15%;
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: 300;
+    color: #3f3d59;
+}
+
+#h-info .purple-text {
+    color: #7971e8;
+}
+
+#h-info .blue-text {
+    color: #5d9cec;
+}
+
+#h-info .green-text {
+    color: #26dd6c;
+}

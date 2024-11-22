@@ -318,4 +318,35 @@
     </picture>
 </section>
                                                                 
-                                
+<!-- ============================================ -->
+<!--                    Cards                     -->
+<!-- ============================================ -->
+
+
+<div id="info" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="info-text"><small>We accept American&nbsp;Express, Discover&nbsp;Network, MasterCard, Visa, JCB, UnionPay, Diner's&nbsp;Club&nbsp;International, Zelle, PayPal, and PayPal&nbsp;Credit.</small></div>
+                
+                <div class="info-text">
+                <img src="/images/cards/amex.png" alt="American Express" title="American Express">
+                
+                <img src="/images/cards/discover.png" alt="Discover Network" title="Discover Network">
+                <img src="/images/cards/mastercard.png" alt="MasterCard" title="MasterCard">
+                <img src="/images/cards/visa.png" alt="Visa" title="Visa">
+                <img src="/images/cards/dinersclub.png" alt="Diner's Club International" title="Diner's Club International">
+                <img src="/images/cards/jcb.png" alt="JCB" title="JCB">
+                <img src="/images/cards/unionpay.png" alt="UnionPay" title="UnionPay"><img src="/images/cards/paypal.png" alt="PayPal" title="PayPal"><img src="/images/cards/zelle.png" alt="Zelle" title="Zelle"><img src="/images/cards/net30.png" alt="NET 30" title="NET 30">
+                </div>
+                <!--
+                <div class="info-text"><small>TechSero also offers NET 30 terms for U.S. businesses, with approved credit.</small></div>
+                
+                <div class="buttons-holder">
+                    <a href="https://techsero.net/register.php" class="ybtn ybtn-accent-color">Apply for a Net 30 Account</a>
+                </div>                
+                -->
+            </div>
+        </div>
+    </div>
+</div>                                
