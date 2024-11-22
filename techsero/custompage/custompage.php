@@ -18,6 +18,8 @@
 use Zotlabs\Lib\Apps;
 use Zotlabs\Extend\Hook;
 use Zotlabs\Extend\Route;
+use Zotlabs\Render\Comanche;
+
 use Zotlabs\Module\Webdesign;
 use Zotlabs\Module\Hubzilla;
 use Zotlabs\Module\Main;
@@ -26,6 +28,7 @@ use Zotlabs\Module\Contentcreation;
 
 class CustomPage {
     const _CUSTOM_PAGES = ['webdesign', 'hubzilla', 'contentcreation', 'webservices', 'main'];
+    
     public static function loadAssets(): void {
         if (file_exists(PROJECT_BASE . '/addon/custompage/view/js/custompage.js'))
             head_add_js('/addon/custompage/view/js/custompage.js');
@@ -33,6 +36,7 @@ class CustomPage {
         if (file_exists(PROJECT_BASE . '/addon/custompage/view/css/custompage.css'))
             head_add_css('/addon/custompage/view/css/custompage.css');
     }
+    
 
 }
 

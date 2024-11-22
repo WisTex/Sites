@@ -16,7 +16,7 @@ use Zotlabs\Web\Controller;
 class Main extends Controller {
 
 	// Class Fields
-	private string $_moduleName = '';
+	public string $_moduleName = '';
 	
 	// Method executed during page initialization
 	public function init(): void {
@@ -34,7 +34,7 @@ class Main extends Controller {
 	}
 
 	// Generic handler for a HTTP GET request (e.g., viewing the page normally)
-	public function get(): void {
+	public function get(): string {
 		// Create page sections, inserting template vars
         $content = replace_macros(get_markup_template($this->_moduleName . ".tpl", 'addon/custompage'), [
 			'$action_url' => $this->_moduleName,
