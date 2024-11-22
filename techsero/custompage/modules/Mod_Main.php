@@ -50,7 +50,8 @@ class Main extends Controller {
         //die(print_r(App::$page));
 		//die(print_r(App::$pdl));
         App::$page['title'] = "TechSero Web Services";
-        App::$page['content'] = $content;
+        // App::$page['content'] = $content;
+		return $content;
         //App::$page['footer'] = $footer;
 	}
 

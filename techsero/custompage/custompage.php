@@ -20,9 +20,20 @@ use Zotlabs\Extend\Hook;
 use Zotlabs\Extend\Route;
 use Zotlabs\Module\Webdesign;
 use Zotlabs\Module\Hubzilla;
+use Zotlabs\Module\Main;
+use Zotlabs\Module\Webservices;
+use Zotlabs\Module\Contentcreation;
 
 class CustomPage {
     const _CUSTOM_PAGES = ['webdesign', 'hubzilla', 'contentcreation', 'webservices', 'main'];
+    public static function loadAssets(): void {
+        if (file_exists(PROJECT_BASE . '/addon/custompage/view/js/custompage.js'))
+            head_add_js('/addon/custompage/view/js/custompage.js');
+
+        if (file_exists(PROJECT_BASE . '/addon/custompage/view/css/custompage.css'))
+            head_add_css('/addon/custompage/view/css/custompage.css');
+    }
+
 }
 
 /**
@@ -36,6 +47,8 @@ function custompage_load() {
     Hook::register('load_pdl', 'addon/custompage/custompage.php', 'custompage_load_pdl');
     Hook::register('page_header', 'addon/custompage/custompage.php', 'custompage_customize_header');
     Hook::register('page_end', 'addon/custompage/custompage.php', 'custompage_customize_footer');
+    Hook::register('home_content', 'addon/custompage/custompage.php', 'custompage_home_redirect');
+    Hook::register('home_init', 'addon/custompage/custompage.php', 'custompage_home_redirect_loggedin');
     /* You will need a route and a corresponding module for every custom URL */
 	Route::register('addon/custompage/modules/Mod_Webdesign.php', 'webdesign');
     Route::register('addon/custompage/modules/Mod_Hubzilla.php', 'hubzilla');
@@ -50,6 +63,8 @@ function custompage_unload() {
     Hook::unregister('load_pdl', 'addon/custompage/custompage.php', 'custompage_load_pdl');
 	Hook::unregister('page_header', 'addon/custompage/custompage.php', 'custompage_customize_header');
     Hook::unregister('page_end', 'addon/custompage/custompage.php', 'custompage_customize_footer');
+    Hook::unregister('home_content', 'addon/custompage/custompage.php', 'custompage_home_redirect');
+    Hook::unregister('home_init', 'addon/custompage/custompage.php', 'custompage_home_redirect_loggedin');
     /* You will need a route and a corresponding module for every custom URL */
 	Route::unregister('addon/custompage/modules/Mod_Webdesign.php', 'webdesign');
     Route::unregister('addon/custompage/modules/Mod_Hubzilla.php', 'hubzilla');
@@ -57,6 +72,50 @@ function custompage_unload() {
     Route::unregister('addon/custompage/modules/Mod_Webservices.php', 'webservices');    
     Route::unregister('addon/custompage/modules/Mod_Main.php', 'main');    
 }
+
+/** 
+ * * This function runs when the hook handler is executed.
+ * @param $o: A reference to Home module get() output
+*/
+function custompage_home_redirect(&$o) {
+	//header("Location: " . z_root() . "/main", true, 301);
+	//killme();
+    require_once('addon/custompage/modules/Mod_Main.php');
+    $module = new Main();
+    if (method_exists($module, 'init')) {
+        $module->init();
+    }
+    $pdl = @file_get_contents('addon/custompage/pdl/mod_main.pdl');
+    App::$comanche->parse($pdl);
+    App::$pdl = $pdl;
+    CustomPage::loadAssets();
+    if (method_exists($module, 'get')) {
+        $o = $module->get();
+    }
+}
+
+/** 
+ * * This function runs when the hook handler is executed.
+ * @param $ret: A reference to Home module init() object
+*/
+function custompage_home_redirect_loggedin(&$ret) {
+    //$ret['startpage'] = z_root() . "/main";
+    require_once('addon/custompage/modules/Mod_Main.php');
+    $module = new Main();
+    $module->_moduleName = 'main';
+    $pdl = @file_get_contents('addon/custompage/pdl/mod_main.pdl');
+    App::$comanche = new Comanche();
+    App::$comanche->parse($pdl);
+    App::$pdl = $pdl;
+    CustomPage::loadAssets();
+    if (method_exists($module, 'get')) {
+        App::$page['content'] = $module->get();
+    }
+    construct_page();
+    killme();
+}
+
+
 
 /** 
  * * This function runs when the hook handler is executed.
@@ -91,9 +150,10 @@ function custompage_customize_header(&$content) {
     // Replace Neuhub page header with a custom header
     if (in_array(App::$module, CustomPage::_CUSTOM_PAGES)) {
         //$content = replace_macros(get_markup_template('header_custom.tpl', 'addon/custompage'), []);
-        head_add_css('/addon/custompage/view/css/custompage.css');
+        // head_add_css('/addon/custompage/view/css/custompage.css');
         head_add_css('/addon/custompage/view/css/codestitch.css');
         head_add_css('/addon/custompage/view/css/codestitch-techsero.css');
+        CustomPage::loadAssets();
     }
 }
 
