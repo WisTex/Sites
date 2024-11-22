@@ -35,8 +35,14 @@ class CustomPage {
 
         if (file_exists(PROJECT_BASE . '/addon/custompage/view/css/custompage.css'))
             head_add_css('/addon/custompage/view/css/custompage.css');
+
+        if (file_exists(PROJECT_BASE . '/addon/custompage/view/css/codestitch.css'))
+            head_add_css('/addon/custompage/view/css/codestitch.css');
+
+        if (file_exists(PROJECT_BASE . '/addon/custompage/view/css/codestitch-techsero.css'))
+            head_add_css('/addon/custompage/view/css/codestitch-techsero.css');
+
     }
-    
 
 }
 
@@ -155,8 +161,8 @@ function custompage_customize_header(&$content) {
     if (in_array(App::$module, CustomPage::_CUSTOM_PAGES)) {
         //$content = replace_macros(get_markup_template('header_custom.tpl', 'addon/custompage'), []);
         // head_add_css('/addon/custompage/view/css/custompage.css');
-        head_add_css('/addon/custompage/view/css/codestitch.css');
-        head_add_css('/addon/custompage/view/css/codestitch-techsero.css');
+        // head_add_css('/addon/custompage/view/css/codestitch.css');
+        // head_add_css('/addon/custompage/view/css/codestitch-techsero.css');
         CustomPage::loadAssets();
     }
 }
