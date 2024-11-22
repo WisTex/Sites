@@ -23,7 +23,7 @@
                 <ul id="cs-expanded" class="cs-ul" aria-expanded="false">
 
                     <li class="cs-li">
-                        <a href="/main" class="cs-li-link cs-active">
+                        <a href="/" class="cs-li-link cs-active">
                             Home
                         </a>
                     </li>

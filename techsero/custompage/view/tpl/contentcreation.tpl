@@ -56,7 +56,7 @@
             <div class="cs-ul-wrapper">
                 <ul id="cs-expanded" class="cs-ul" aria-expanded="false">
                     <li class="cs-li">
-                        <a href="/home" class="cs-li-link">
+                        <a href="/" class="cs-li-link">
                             Home
                         </a>
                     </li>
