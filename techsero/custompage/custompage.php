@@ -28,7 +28,7 @@ use Zotlabs\Module\Contentcreation;
 
 class CustomPage {
     const _CUSTOM_PAGES = ['webdesign', 'hubzilla', 'contentcreation', 'webservices', 'main'];
-    
+    const _ENABLE_SIDEBAR = false;
     public static function loadAssets(): void {
         if (file_exists(PROJECT_BASE . '/addon/custompage/view/js/custompage.js'))
             head_add_js('/addon/custompage/view/js/custompage.js');
@@ -164,6 +164,9 @@ function custompage_customize_header(&$content) {
         // head_add_css('/addon/custompage/view/css/codestitch.css');
         // head_add_css('/addon/custompage/view/css/codestitch-techsero.css');
         CustomPage::loadAssets();
+        if (!CustomPage::_ENABLE_SIDEBAR) {
+            $content = preg_replace('/<aside[^>]*>.+?<\/aside>/s', "", $content);
+        }
     }
 }
 
